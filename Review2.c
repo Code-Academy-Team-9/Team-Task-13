@@ -25,7 +25,7 @@ int main(void) {
 void PrintOnScreen(char *String){
     char answer = 'Y';
     while (answer == 'y' || answer == 'Y') {
-        printf("Enter your text here:"); 
+        printf("Enter your text here: \n"); 
         getInput(String);
         printf("Numbers of words in \"%s\" : %d\n", String, countTheWords(String));
         printf("If you want to continue press:'Y'.\n");
@@ -38,7 +38,7 @@ void getInput(char *str){
     char c;
     int count = 0;
     /* Създаваме цикъл при който потребителя въвежда символи, докато не натисне нов ред. Всеки символ се добавя към стринга. */
-    while ((c = getchar()) != '\n'){
+    while ((c = getchar()) != '?'){
         *str++ = c;
         count++;
         if(count == 254){//1
