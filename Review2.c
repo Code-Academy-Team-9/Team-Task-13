@@ -26,9 +26,16 @@ int main(void) {
 
 /* Change from team 8: We create a function for printing the menu*/
 void PrintOnScreen(char *String){
-        printf("Enter your text here: \n"); 
+    char answer = 'y';
+    do {
+        printf("Enter your text here (type '!' to end the typing): \n"); 
         getInput(String);
         printf("Numbers of words in \"%s\" : %d\n", String, countTheWords(String));
+        printf("If you want to continue..press 'Y'.\nTo stop the programm, press any other key.\n");
+        scanf(" %c", &answer);
+    } while (answer == 'y' || answer == 'Y');
+
+    printf("Bye!");         
 }
 
 void getInput(char *str){
@@ -36,7 +43,7 @@ void getInput(char *str){
     int count = 0;
     /* We create a loop in which the user input characters until the user press a new line 
     and every character gets added to the string */
-    while ((c = getchar()) != '\n'){
+    while ((c = getchar()) != '!'){
         *str++ = c;
         count++;
         if(count == 254){
@@ -58,7 +65,7 @@ unsigned countTheWords(char *str) {
     while (*str)
     {
         /* Check if the character is not a letter */
-        if (!((*str >= g_A && *str <= g_a) || (*str >= g_Z && *str <= g_z))) {
+        if (!((*str >= g_A && *str <= g_Z) || (*str >= g_a && *str <= g_z))) {
             state = SIGN;
         } else if (state == SIGN) {
             state = LETTER;
